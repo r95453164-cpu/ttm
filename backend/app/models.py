@@ -10,7 +10,6 @@ AsyncSessionLocal = lambda: AsyncSession(engine, expire_on_commit=False)
 Base = declarative_base()
 
 # --- Модели БД ---
-
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
@@ -45,7 +44,7 @@ class Theme(Base):
     __tablename__ = "themes"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
-    background = Column(String) # HEX
+    background = Column(String)
     secondary_background = Column(String)
     primary_text = Column(String)
     secondary_text = Column(String)
@@ -66,9 +65,8 @@ class CustomEmoji(Base):
     mime_type = Column(String, nullable=False)
     size_kb = Column(Integer)
     is_approved = Column(Boolean, default=False)
-    position = Column(String) # relative to nickname
+    position = Column(String)
     
-    # Связи
     usage = relationship("EmojiUsage", back_populates="emoji")
 
 class EmojiUsage(Base):
@@ -96,6 +94,6 @@ class ModerationReport(Base):
     __tablename__ = "moderation_reports"
     id = Column(Integer, primary_key=True, index=True)
     reporter_id = Column(Integer, ForeignKey("users.id"))
-    reported_content_id = Column(Integer) # emoji_id или user_id
+    reported_content_id = Column(Integer)
     reason = Column(Text)
-    status = Column(String, default="pending") # pending, resolved, rejected
+    status = Column(String, default="pending")

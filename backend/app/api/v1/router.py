@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from . import schemas, models
+from app.database import Base, User, Theme, CustomEmoji, UserSettings
+from app import schemas
 
 router = APIRouter()
 
@@ -10,7 +11,6 @@ async def health():
 
 @router.post("/auth/register", response_model=schemas.UserResponse)
 async def register(user: schemas.UserCreate):
-    # Логика регистрации (хеширование, сохранение в БД)
     return {"id": 1, "username": user.username, "email": user.email, "is_active": True}
 
 @router.post("/auth/login", response_model=schemas.Token)
