@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import api_router
-from app.database import engine
-from app.models import Base
+from app.database import engine, Base, AsyncSessionLocal
 
 app = FastAPI(
     title="TikTok Custom API",
