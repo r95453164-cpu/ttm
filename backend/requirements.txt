@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+sqlalchemy[asyncpg]
+alembic
+pydantic
+python-jose[cryptography]
+passlib[bcrypt]
+redis
+python-multipart
+boto3
+starlette
+pytest
+httpx
+openapi-schema-pydantic
